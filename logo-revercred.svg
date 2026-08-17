@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="320" viewBox="0 0 520 160" role="img" aria-labelledby="title description">
+  <title id="title">REVERCRED</title>
+  <desc id="description">Logo da REVERCRED em verde-escuro e vermelho</desc>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@800&amp;display=swap");
+
+    .wordmark {
+      font-family: "Manrope", Arial, sans-serif;
+      font-size: 66px;
+      font-weight: 800;
+      letter-spacing: -3.3px;
+    }
+  </style>
+
+  <g transform="translate(0 20) scale(3)" fill="#d83a0c">
+    <path d="M7 8h10.2l5.4 8.2L28 8h5L22.7 25.8 16.5 17H12l10.7 15H17L7 18.2V8Z" />
+  </g>
+
+  <text class="wordmark" x="114" y="104">
+    <tspan fill="#152a27">REVER</tspan><tspan fill="#d83a0c">CRED</tspan>
+  </text>
+</svg>
