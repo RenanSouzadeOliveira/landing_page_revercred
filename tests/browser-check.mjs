@@ -102,7 +102,11 @@ const interactionResults = await evaluate(`(() => {
     ctaTracked: window.dataLayer?.some((item) => item.event === "cta_simulacao_click"),
     typebotOpenTracked: window.dataLayer?.some((item) => item.event === "typebot_open"),
     whatsappLinkCount: whatsappLinks.length,
-    whatsappLinksValid: whatsappLinks.every((link) => link.href.startsWith("https://wa.me/5511933187748?text=")),
+    whatsappLinksValid: whatsappLinks.every(
+      (link) =>
+        link.href ===
+        "https://wa.me/5511954718996?text=Ol%C3%A1%2C%20acabei%20de%20realizar%20a%20consulta%20na%20Revercred%20e%20gostaria%20de%20falar%20com%20um%20especialista%2E",
+    ),
     whatsappLinksSafe: whatsappLinks.every((link) => link.target === "_blank" && link.rel.includes("noopener") && link.rel.includes("noreferrer")),
     hasMetaDescription: Boolean(document.querySelector('meta[name="description"]')?.content),
     headingOrder: [...document.querySelectorAll("h1, h2, h3")].map((heading) => Number(heading.tagName[1])),
