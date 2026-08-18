@@ -77,12 +77,10 @@ for (const width of viewports) {
       return rect.width > 0 && (rect.right > innerWidth + 1 || rect.left < -1);
     }).map((element) => element.tagName.toLowerCase() + (element.className ? "." + String(element.className).split(" ")[0] : ""));
 
-    const whatsapp = document.querySelector(".whatsapp-floating")?.getBoundingClientRect();
     return {
       width: innerWidth,
       documentWidth: document.documentElement.scrollWidth,
       overflow: visibleOverflow.slice(0, 8),
-      whatsappInsideViewport: Boolean(whatsapp && whatsapp.left >= 0 && whatsapp.right <= innerWidth && whatsapp.bottom <= innerHeight),
       typebotMounted: Boolean(document.querySelector("typebot-bubble")),
       typebotApiReady: typeof window.__revercredTypebot?.open === "function",
     };
@@ -95,19 +93,11 @@ const interactionResults = await evaluate(`(() => {
   faq.querySelector("summary").click();
   document.querySelector(".hero .js-typebot-cta").click();
   const ctaCount = document.querySelectorAll(".js-typebot-cta").length;
-  const whatsappLinks = [...document.querySelectorAll(".js-whatsapp-link")];
   return {
     faqOpened: faq.open,
     ctaCount,
     ctaTracked: window.dataLayer?.some((item) => item.event === "cta_simulacao_click"),
     typebotOpenTracked: window.dataLayer?.some((item) => item.event === "typebot_open"),
-    whatsappLinkCount: whatsappLinks.length,
-    whatsappLinksValid: whatsappLinks.every(
-      (link) =>
-        link.href ===
-        "https://wa.me/5511954718996?text=Ol%C3%A1%2C%20acabei%20de%20realizar%20a%20consulta%20na%20Revercred%20e%20gostaria%20de%20falar%20com%20um%20especialista%2E",
-    ),
-    whatsappLinksSafe: whatsappLinks.every((link) => link.target === "_blank" && link.rel.includes("noopener") && link.rel.includes("noreferrer")),
     hasMetaDescription: Boolean(document.querySelector('meta[name="description"]')?.content),
     headingOrder: [...document.querySelectorAll("h1, h2, h3")].map((heading) => Number(heading.tagName[1])),
   };
@@ -126,7 +116,7 @@ const result = {
 process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
 
 const failed = layoutResults.some(
-  (layout) => layout.documentWidth > layout.width || layout.overflow.length || !layout.whatsappInsideViewport || !layout.typebotMounted || !layout.typebotApiReady,
+  (layout) => layout.documentWidth > layout.width || layout.overflow.length || !layout.typebotMounted || !layout.typebotApiReady,
 );
 
 socket.close();
@@ -135,8 +125,6 @@ if (
   !interactionResults.faqOpened ||
   !interactionResults.ctaTracked ||
   !interactionResults.typebotOpenTracked ||
-  !interactionResults.whatsappLinksValid ||
-  !interactionResults.whatsappLinksSafe ||
   typebotNetwork.some((entry) => entry.status >= 400) ||
   consoleIssues.length
 ) {

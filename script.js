@@ -54,19 +54,13 @@
     window.addEventListener(TYPEBOT_READY_EVENT, openWhenReady, { once: true });
     window.addEventListener(
       TYPEBOT_ERROR_EVENT,
-      () => updateTypebotStatus("Não foi possível carregar a simulação agora. Tente novamente ou fale com um especialista pelo WhatsApp."),
+      () => updateTypebotStatus("Não foi possível carregar a simulação agora. Recarregue a página e tente novamente."),
       { once: true },
     );
   }
 
   document.querySelectorAll(".js-typebot-cta").forEach((cta) => {
     cta.addEventListener("click", handleTypebotCta);
-  });
-
-  document.querySelectorAll(".js-whatsapp-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      trackEvent("whatsapp_click", { placement: link.closest(".floating-contact") ? "floating" : "content" });
-    });
   });
 
   document.querySelectorAll(".faq-list details").forEach((item, index) => {
