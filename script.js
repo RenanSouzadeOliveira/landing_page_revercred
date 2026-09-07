@@ -65,7 +65,7 @@
 
   document.querySelectorAll(".js-whatsapp-link").forEach((link) => {
     link.addEventListener("click", () => {
-      trackEvent("whatsapp_click", { placement: "hero" });
+      trackEvent("whatsapp_click", { placement: link.dataset.placement || "unknown" });
     });
   });
 
