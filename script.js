@@ -63,6 +63,12 @@
     cta.addEventListener("click", handleTypebotCta);
   });
 
+  document.querySelectorAll(".js-whatsapp-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      trackEvent("whatsapp_click", { placement: "hero" });
+    });
+  });
+
   document.querySelectorAll(".faq-list details").forEach((item, index) => {
     item.addEventListener("toggle", () => {
       if (item.open) {

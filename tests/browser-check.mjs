@@ -93,9 +93,17 @@ const interactionResults = await evaluate(`(() => {
   faq.querySelector("summary").click();
   document.querySelector(".hero .js-typebot-cta").click();
   const ctaCount = document.querySelectorAll(".js-typebot-cta").length;
+  const whatsappLink = document.querySelector(".hero .js-whatsapp-link");
   return {
     faqOpened: faq.open,
     ctaCount,
+    whatsappLinkValid: Boolean(
+      whatsappLink &&
+      whatsappLink.href === "https://wa.me/5511954718996?text=Ol%C3%A1%2C%20acabei%20de%20realizar%20a%20consulta%20na%20Revercred%20e%20gostaria%20de%20falar%20com%20um%20especialista%2E" &&
+      whatsappLink.target === "_blank" &&
+      whatsappLink.rel.includes("noopener") &&
+      whatsappLink.rel.includes("noreferrer")
+    ),
     ctaTracked: window.dataLayer?.some((item) => item.event === "cta_simulacao_click"),
     typebotOpenTracked: window.dataLayer?.some((item) => item.event === "typebot_open"),
     hasMetaDescription: Boolean(document.querySelector('meta[name="description"]')?.content),
@@ -123,6 +131,7 @@ socket.close();
 if (
   failed ||
   !interactionResults.faqOpened ||
+  !interactionResults.whatsappLinkValid ||
   !interactionResults.ctaTracked ||
   !interactionResults.typebotOpenTracked ||
   typebotNetwork.some((entry) => entry.status >= 400) ||
