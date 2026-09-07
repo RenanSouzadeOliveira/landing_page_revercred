@@ -353,11 +353,11 @@ h2 {
 .whatsapp-floating {
   position: fixed;
   right: 82px;
-  bottom: 26px;
+  bottom: 23px;
   z-index: 2147483000;
   display: grid;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   overflow: hidden;
   border: 2px solid #fff;
   border-radius: 50%;
@@ -1218,13 +1218,6 @@ h2 {
 
   .final-actions .button {
     width: auto;
-  }
-
-  .whatsapp-floating {
-    right: 82px;
-    bottom: 26px;
-    width: 42px;
-    height: 42px;
   }
 
 }
