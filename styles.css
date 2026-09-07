@@ -352,14 +352,14 @@ h2 {
 
 .whatsapp-floating {
   position: fixed;
-  right: 86px;
-  bottom: 20px;
+  right: 82px;
+  bottom: 26px;
   z-index: 2147483000;
   display: grid;
-  width: 58px;
-  height: 58px;
+  width: 40px;
+  height: 40px;
   overflow: hidden;
-  border: 3px solid #fff;
+  border: 2px solid #fff;
   border-radius: 50%;
   background: #25d366;
   box-shadow: 0 10px 28px rgba(7, 54, 36, 0.3);
@@ -1221,10 +1221,10 @@ h2 {
   }
 
   .whatsapp-floating {
-    right: 94px;
-    bottom: 24px;
-    width: 62px;
-    height: 62px;
+    right: 82px;
+    bottom: 26px;
+    width: 42px;
+    height: 42px;
   }
 
 }

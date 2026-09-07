@@ -95,6 +95,8 @@ const interactionResults = await evaluate(`(() => {
   const ctaCount = document.querySelectorAll(".js-typebot-cta").length;
   const whatsappLink = document.querySelector(".hero .js-whatsapp-link");
   const floatingWhatsapp = document.querySelector(".whatsapp-floating.js-whatsapp-link");
+  const floatingWhatsappStyle = floatingWhatsapp && getComputedStyle(floatingWhatsapp);
+  const floatingWhatsappRect = floatingWhatsapp?.getBoundingClientRect();
   return {
     faqOpened: faq.open,
     ctaCount,
@@ -109,7 +111,10 @@ const interactionResults = await evaluate(`(() => {
       floatingWhatsapp &&
       floatingWhatsapp.href === whatsappLink?.href &&
       floatingWhatsapp.dataset.placement === "floating" &&
-      floatingWhatsapp.querySelector('img[src="whatsapp.png"]')
+      floatingWhatsapp.querySelector('img[src="whatsapp.png"]') &&
+      floatingWhatsappStyle.position === "fixed" &&
+      floatingWhatsappRect.width <= 42 &&
+      floatingWhatsappRect.height <= 42
     ),
     ctaTracked: window.dataLayer?.some((item) => item.event === "cta_simulacao_click"),
     typebotOpenTracked: window.dataLayer?.some((item) => item.event === "typebot_open"),
